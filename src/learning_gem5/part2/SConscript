@@ -4,3 +4,6 @@ Import(*)
 
 Simobject('HelloObject.py', sim_objects=['HelloObject'])
 Source('hello_object.cc')
+
+DebugFlag('HelloExample') # 创建一个新的调试标志, 用于在C++代码中启用调试输出
+#使用调试标志时必须使用gem5.opt或gem5.debug
