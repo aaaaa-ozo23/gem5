@@ -1,8 +1,8 @@
 """这个Python文件导入后会自动生成SimObject类并创建函数, 需要声明SimObject和.cc文件"""
 
-Import(*)
+Import('*')
 
-Simobject('HelloObject.py', sim_objects=['HelloObject'])
+SimObject('HelloObject.py', sim_objects=['HelloObject'])
 Source('hello_object.cc')
 
 DebugFlag('HelloExample') # 创建一个新的调试标志, 用于在C++代码中启用调试输出
