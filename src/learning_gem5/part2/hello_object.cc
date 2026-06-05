@@ -1,20 +1,22 @@
 #include "learning_gem5/part2/hello_object.hh"
-
 #include "debug/HelloExample.hh"
+#include "learning_gem5/part2/goodbye_object.hh"
 
 namespace gem5
 {
 
 HelloObject::HelloObject(const HelloObjectParams &params)
     : SimObject(params),
-      // event(*this), //不同版本
-      event([this] { processEvent(); }, name()),
+      event(*this), // 新版本
+      // event([this] { processEvent(); }, name()), //旧版本
+      goodbye(params.goodbye_object),
       myName(params.name), // 将参数对象中的name存储到成员变量myName中
       latency(params.time_to_wait),
       timesLeft(params.number_of_fires)
 {
     DPRINTF(HelloExample, "Created the hello object with the name %s\n",
             myName.c_str());
+    panic_if(!goodbye, "HelloObject must have a non-null GoodbyeObject");
 } // 将声明的参数传递给C++类的构造函数
 
 /*HelloObject::HelloObject(const HelloObjectParams &params)
@@ -47,6 +49,7 @@ HelloObject::processEvent()
 
     if (timesLeft <= 0) {
         DPRINTF(HelloExample, "Done firing!\n");
+        goodbye->sayGoodbye(myName);
     } else {
         schedule(event, curTick() + latency);
     }

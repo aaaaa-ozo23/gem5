@@ -3,20 +3,25 @@
 
 #include <string>
 
+#include "learning_gem5/part2/goodbye_object.hh"
 #include "params/HelloObject.hh"
 #include "sim/sim_object.hh"
 
 namespace gem5
 {
 
+class GoodbyeObject;
+
 class HelloObject : public SimObject
 {
   private:
     void processEvent(); // 创建简单的事件回调, 声明一个函数在事件触发时被调用
 
-    // MemberEventWrapper<&HelloObject::processEvent> event; //不同版本
+    MemberEventWrapper<&HelloObject::processEvent> event; // 新版本
 
-    EventFunctionWrapper event; // 允许执行任何函数
+    // EventFunctionWrapper event; // 旧版本
+
+    GoodbyeObject *goodbye; // 添加一个成员变量来存储指向GoodbyeObject的指针
 
     const std::string myName; // 添加一个成员变量来存储对象的名称
 
