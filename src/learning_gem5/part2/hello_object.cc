@@ -17,6 +17,7 @@ HelloObject::HelloObject(const HelloObjectParams &params)
     DPRINTF(HelloExample, "Created the hello object with the name %s\n",
             myName.c_str());
     panic_if(!goodbye, "HelloObject must have a non-null GoodbyeObject");
+    // 确保goodbye对象不为null, 如果为null则触发panic并输出错误信息
 } // 将声明的参数传递给C++类的构造函数
 
 /*HelloObject::HelloObject(const HelloObjectParams &params)
