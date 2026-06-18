@@ -1,6 +1,6 @@
 Import('*')
 
-SimObject('SimpleMemobj.py')
+SimObject('SimMemObject.py', sim_objects=['SimpleMemobj'])
 Source('simple_memobj.cc')
 
 DebugFlag('SimpleMemobj', "For Learning gem5 Part 2.")
